@@ -5,9 +5,11 @@ require "./lettehttpd/lettehttpd"
 content_directory : String = "./"
 listen_port : Int32 = 8080
 listen_addr : String = "0.0.0.0"
+VERSION = "0.1.0"
 
 OptionParser.parse! do |parser|
   parser.on("-h", "--help", "show this help message and exit") { puts parser; exit }
+  parser.on("-v", "--version", "show version number and exit") { puts "LetteHttpd #{VERSION}"; exit }
   parser.on("-d DIR", "--directory DIR", "specify a directory") { |dir| content_directory = dir }
   parser.on("-l ip:port", "--listen ip:port", "specify listen address and port") { |listen_vars| listen_addr = listen_vars.split(':')[0]; listen_port = listen_vars.split(':')[1].to_i }
 end
