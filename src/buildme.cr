@@ -1,34 +1,10 @@
 require "http"
 require "option_parser"
-
+require "./lettehttpd/lettehttpd"
 # Default varibles
 content_directory : String = "./"
 listen_port : Int32 = 8080
 listen_addr : String = "0.0.0.0"
-
-module LetteHttpd
-
-    class StaticFileHandler < HTTP::StaticFileHandler
-        def call(context)
-            # Rewrite path
-            if context.request.path.ends_with?("/")
-                index_path = context.request.path + "index.html"
-                index_realpath = @public_dir + index_path
-      
-                if File.exists?(index_realpath)
-                    context.response.status_code = 200
-                    context.request.path = index_path
-                end
-            end
-      
-            # Add server name
-            context.response.headers["Server"] = "LetteHttpd"
-            super
-        end
-    end
-    
-end
-
 
 OptionParser.parse! do |parser|
   parser.on("-h", "--help", "show this help message and exit") { puts parser; exit }
