@@ -1,5 +1,5 @@
 # lettehttpd
-### heavenly underdevelopmentt 
+### under heavy development
 lettehttpd is a simple, fast HTTP web server for static content. it can serve contents when you are in a hurry.
 
 ## Installation
